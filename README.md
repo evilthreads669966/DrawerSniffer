@@ -15,14 +15,14 @@ allprojects {
 2. Add the dependency to your app's build.gradle file
 ```gradle
 dependencies {
-    implementation 'com.github.evilthreads669966:drawersniffer:0.1'
+    implementation 'com.github.evilthreads669966:drawersniffer:0.2'
 }
 ```
 3. Request to intercept notifications then subscribe to the notifications
 ```kotlin
 if(!DrawerSniffer.hasPermission(this))
     DrawerSniffer.requestPermission(this)
-DrawerSniffer.subscribe(this@MyService){ notif ->
+DrawerSniffer.subscribe{ notif ->
     Log.d("DRAWER SNIFFER", notif.toString())
 }
 ```
