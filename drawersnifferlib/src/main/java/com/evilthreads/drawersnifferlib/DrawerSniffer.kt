@@ -47,8 +47,11 @@ class DrawerSniffer{
     companion object {
         private val channel = Channel<InterceptedNotification>()
 
+        /*send a notification event*/
         internal suspend fun publish(notif: InterceptedNotification) = channel.send(notif)
 
+        /*subscribe to notification events*/
+        /*use this method to receive notifications as they are posted. Write the code in the consume block to handle each notification as it is intercepted*/
         @ExperimentalCoroutinesApi
         suspend fun subscribe(ctx: Context, consume: (InterceptedNotification) -> Unit){
 /*            while(!hasPermission(ctx))
@@ -56,12 +59,14 @@ class DrawerSniffer{
             channel.consumeEach { notification -> consume(notification) }
         }
 
+        /*checks whether the user has enabled notification listener services for you app in the notification services settings screen*/
         fun hasPermission(ctx: Context): Boolean {
             val cn = ComponentName(ctx, NotificationInterceptorService::class.java)
             val flat = Settings.Secure.getString(ctx.contentResolver, "enabled_notification_listeners")
             return flat != null && flat.contains(cn.flattenToString())
         }
 
+        /*request notification listening services for your package or application*/
         fun requestPermission(ctx: Context) {
             val intent = Intent().apply {
                 action = Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS
@@ -72,4 +77,5 @@ class DrawerSniffer{
     }
 }
 
+/*data type for an intercepted notification and is used in the channel for posting events*/
 data class InterceptedNotification(val title: String, val body: CharSequence, val footer: String, val app: String, val time: Long)
