@@ -1,6 +1,6 @@
 [![Release](https://jitpack.io/v/evilthreads669966/drawersniffer.svg)](https://jitpack.io/#evilthreads669966/drawersniffer)&nbsp;&nbsp;[![API](https://img.shields.io/badge/API-22%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=22)
 # Drawer Sniffer
-### A notification interception library for Android for snooping all interceptions in the notification drawer.
+### A notification interception library for Android that sniffs all notifications in the notification drawer.
 
 ### User Instructions
 1. Add the maven repository to your project's build.gradle file
