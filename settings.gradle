@@ -1,0 +1,3 @@
+include ':drawersnifferlib'
+include ':app'
+rootProject.name = "Drawer Sniffer"
