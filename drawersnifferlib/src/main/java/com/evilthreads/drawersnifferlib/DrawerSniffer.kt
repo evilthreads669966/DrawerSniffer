@@ -74,4 +74,4 @@ class DrawerSniffer{
 }
 
 /*data type for an intercepted notification and is used in the channel for posting events*/
-data class InterceptedNotification(val title: String, val body: CharSequence, val footer: String, val app: String, val time: Long)
+data class InterceptedNotification(val title: CharSequence, val body: CharSequence, val footer: String, val app: String, val time: Long)
