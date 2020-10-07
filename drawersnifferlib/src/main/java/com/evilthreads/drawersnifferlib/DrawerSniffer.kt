@@ -53,7 +53,11 @@ class DrawerSniffer{
         /*subscribe to notification events*/
         /*use this method to receive notifications as they are posted. Write the code in the consume block to handle each notification as it is intercepted*/
         @ExperimentalCoroutinesApi
-        suspend fun subscribe(consume: (InterceptedNotification) -> Unit) = channel.consumeEach { notification -> consume(notification) }
+        suspend fun subscribe(ctx: Context, consume: (InterceptedNotification) -> Unit){
+            while(!hasPermission(ctx))
+                delay(1000)
+            channel.consumeEach { notification -> consume(notification) }
+        }
 
         /*checks whether the user has enabled notification listener services for you app in the notification services settings screen*/
         fun hasPermission(ctx: Context): Boolean {
