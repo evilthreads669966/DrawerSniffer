@@ -18,11 +18,11 @@ dependencies {
     implementation 'com.github.evilthreads669966:drawersniffer:0.4'
 }
 ```
-3. Request to intercept notifications then subscribe to the notifications
+3. Request to intercept notifications then subscribe to the notifications passing in context
 ```kotlin
 if(!DrawerSniffer.hasPermission(this))
     DrawerSniffer.requestPermission(this)
-DrawerSniffer.subscribe{ notif ->
+DrawerSniffer.subscribe(this){ notif ->
     Log.d("DRAWER SNIFFER", notif.toString())
 }
 ```
